@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comex: Rumo ao Topo — baixar o jogo</title>
+<meta name="description" content="Comex: Rumo ao Topo é um RPG de escritório sobre Comércio Exterior. Comece como estagiário numa despachante aduaneira e chegue a Diretor. Grátis para Windows e Android.">
+<meta property="og:title" content="Comex: Rumo ao Topo">
+<meta property="og:description" content="Um RPG de escritório sobre Comércio Exterior. De estagiário a diretor. Grátis para Windows e Android.">
+<meta property="og:image" content="img/02_escritorio.png">
+<link rel="icon" href="img/rodrigo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fundo: #0c0f1d;
+    --faixa: #11152a;
+    --painel: #171c36;
+    --painel-2: #1d2344;
+    --borda: #2e3563;
+    --texto: #eef1fb;
+    --suave: #aab2d8;
+    --ouro: #f2c230;
+    --ouro-escuro: #b8890f;
+    --laranja: #f0a020;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--ouro); }
+  .pixel { font-family: Silkscreen, Inter, sans-serif; font-weight: 700; letter-spacing: .5px; }
+  .conteiner { width: min(1120px, 100% - 32px); margin: 0 auto; }
+  /* painel no estilo da interface do jogo: fundo sólido azul-escuro e borda dourada com "degrau" de pixel */
+  .painel { background: var(--painel); border: 2px solid var(--borda); border-radius: 10px; box-shadow: 0 4px 0 #070912; }
+
+  header.topo { background: var(--fundo); border-bottom: 2px solid var(--borda); }
+  header.topo .conteiner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+  .marca { font-size: 20px; color: var(--ouro); text-decoration: none; white-space: nowrap; }
+  .marca span { color: var(--texto); }
+  nav.menu { display: flex; gap: 20px; flex-wrap: wrap; }
+  nav.menu a { color: var(--suave); text-decoration: none; font-weight: 600; font-size: 15px; }
+  nav.menu a:hover { color: var(--ouro); }
+  @media (max-width: 760px) { nav.menu { display: none; } }
+  @media (max-width: 520px) { .marca span { display: none; } }
+
+  .heroi { padding: 48px 0 56px; background: var(--fundo); }
+  .heroi .grade { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
+  @media (max-width: 920px) { .heroi .grade { grid-template-columns: 1fr; } }
+  .versao { font-size: 14px; font-weight: 600; color: var(--suave); margin: 0; }
+  h1 { font-size: clamp(44px, 6vw, 70px); line-height: 1; margin: 12px 0 6px; color: var(--ouro); text-shadow: 0 4px 0 #5e4200; }
+  h1 small { display: block; font-size: .46em; color: var(--texto); text-shadow: none; margin-top: 12px; }
+  .chamada { font-size: 18px; color: var(--suave); max-width: 520px; margin: 18px 0 0; }
+  .botoes { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 14px; }
+  .botao { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 22px; border-radius: 8px; font-weight: 700; text-decoration: none; border: 2px solid transparent; }
+  .botao.principal { background: var(--ouro); color: #1b1400; box-shadow: 0 4px 0 var(--ouro-escuro); }
+  .botao.principal:hover { background: #ffd24a; }
+  .botao.secundario { background: var(--painel-2); color: var(--texto); border-color: var(--borda); box-shadow: 0 4px 0 #070912; }
+  .botao.secundario:hover { border-color: var(--ouro); }
+  .botao svg { width: 20px; height: 20px; flex: none; }
+  .nota { font-size: 14px; color: var(--suave); margin: 0; }
+  .tela { border-radius: 8px; border: 2px solid var(--borda); image-rendering: pixelated; }
+  .heroi .tela { box-shadow: 0 6px 0 #070912; }
+
+  section { padding: 60px 0; }
+  section.faixa { background: var(--faixa); border-top: 2px solid var(--borda); border-bottom: 2px solid var(--borda); }
+  h2 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 8px; color: var(--ouro); }
+  .sub { color: var(--suave); margin: 0 0 28px; max-width: 720px; }
+
+  /* cards com imagem do jogo em cima e texto num painel sólido */
+  .cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .cartao { overflow: hidden; display: flex; flex-direction: column; }
+  .cartao .foto { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; image-rendering: pixelated; border-bottom: 2px solid var(--borda); }
+  .cartao .texto { padding: 16px 18px 20px; }
+  .cartao h3 { margin: 0 0 6px; font-size: 18px; }
+  .cartao p { margin: 0; color: var(--suave); font-size: 15px; }
+
+  .destaque { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  @media (max-width: 860px) { .destaque { grid-template-columns: 1fr; } }
+  .produto { padding: 28px; }
+  .produto img { margin: 0 auto; image-rendering: pixelated; }
+  .produto .legenda { text-align: center; color: var(--suave); font-size: 14px; margin: 14px 0 0; }
+  .destaque ul { margin: 14px 0 0; padding-left: 20px; color: var(--suave); }
+  .destaque li { margin: 6px 0; }
+  .fala { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding: 12px 14px; }
+  .fala img { width: 64px; height: 64px; border-radius: 6px; border: 2px solid var(--laranja); flex: none; }
+  .fala p { margin: 0; font-size: 15px; }
+  .fala b { color: var(--laranja); display: block; font-size: 14px; }
+
+  .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .galeria figure { margin: 0; }
+  .galeria figcaption { font-size: 14px; color: var(--suave); margin-top: 8px; }
+
+  .downloads { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .download { padding: 22px; display: flex; flex-direction: column; }
+  .download h3 { margin: 0 0 4px; font-size: 20px; }
+  .download p { margin: 0; color: var(--suave); }
+  .download ol { padding-left: 20px; color: var(--suave); margin: 12px 0 18px; flex: 1; }
+  .download .botao { width: 100%; }
+  .indisponivel { color: var(--suave); font-weight: 600; text-align: center; padding: 14px; border: 2px dashed var(--borda); border-radius: 8px; }
+
+  .rolagem { overflow-x: auto; }
+  .tabela { width: 100%; min-width: 680px; border-collapse: collapse; }
+  .tabela th, .tabela td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--borda); vertical-align: top; }
+  .tabela tr:last-child td { border-bottom: 0; }
+  .tabela th { color: var(--ouro); font-size: 13px; text-transform: uppercase; letter-spacing: .6px; background: var(--painel-2); }
+  .tabela td { color: var(--suave); font-size: 15px; }
+  .tabela td:first-child { color: var(--texto); font-weight: 600; white-space: nowrap; }
+  kbd { font: 600 13px Inter, sans-serif; background: #0b0e1c; border: 1px solid var(--borda); border-bottom-width: 3px; padding: 1px 7px; border-radius: 5px; color: var(--texto); }
+
+  footer { padding: 40px 0 56px; color: var(--suave); font-size: 14px; border-top: 2px solid var(--borda); }
+  footer h3 { color: var(--texto); font-size: 15px; margin: 0 0 6px; }
+  footer p { margin: 0; }
+  .creditos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="conteiner">
+    <a class="marca pixel" href="#">COMEX <span>Rumo ao Topo</span></a>
+    <nav class="menu">
+      <a href="#sobre">O jogo</a>
+      <a href="#liftalerta">LiftAlerta</a>
+      <a href="#telas">Telas</a>
+      <a href="#baixar">Baixar</a>
+      <a href="#comandos">Como jogar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="heroi">
+    <div class="conteiner grade">
+      <div>
+        <p class="versao">Versão 1.6 · grátis para Windows e Android</p>
+        <h1 class="pixel">COMEX<small>Rumo ao Topo</small></h1>
+        <p class="chamada">Um RPG de escritório sobre Comércio Exterior. Comece como estagiário numa despachante aduaneira, escolha o seu setor e chegue a Diretor.</p>
+        <div class="botoes">
+          <a class="botao principal" href="https://github.com/gurudoscodigin/comex-rumo-ao-topo-site/releases/latest/download/Comex_Rumo_ao_Topo_Windows.zip">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3zm8.5-1.3L21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zm8.5 0H21V21l-9.5-1.3z"/></svg>
+            Baixar para Windows
+          </a>
+          <a class="botao secundario" href="https://github.com/gurudoscodigin/comex-rumo-ao-topo-site/releases/latest/download/Comex_Rumo_ao_Topo_Android.apk">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 9.2 19 6.6a.5.5 0 1 0-.9-.5l-1.5 2.6a9.4 9.4 0 0 0-9.2 0L5.9 6.1a.5.5 0 1 0-.9.5l1.5 2.6A8.6 8.6 0 0 0 2 16h20a8.6 8.6 0 0 0-4.5-6.8zM7.5 13.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm9 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+            Baixar para Android
+          </a>
+        </div>
+        <p class="nota">Teclado e mouse, controle (no PC e no celular) e toque.</p>
+      </div>
+      <img class="tela" src="img/02_escritorio.png" width="1280" height="720" alt="O escritório da ComerTech, com o relógio do expediente, a reputação e o objetivo da missão na tela">
+    </div>
+  </div>
+
+  <section id="sobre" class="faixa">
+    <div class="conteiner">
+      <h2 class="pixel">O jogo</h2>
+      <p class="sub">Você entra na ComerTech, uma despachante aduaneira, e aprende Comércio Exterior fazendo: conferindo documentos, calculando custos, negociando com clientes e decidindo o que fazer quando algo dá errado.</p>
+      <div class="cartoes">
+        <article class="cartao painel">
+          <img class="foto" src="img/10_diario.png" width="1280" height="720" alt="O diário com as missões do Nível 1, de Estagiário">
+          <div class="texto"><h3>De estagiário a diretor</h3><p>Seis cargos, de Estagiário a Diretor, com responsabilidade e liderança crescendo a cada promoção.</p></div>
+        </article>
+        <article class="cartao painel">
+          <img class="foto" src="img/05_tarefa_tese.png" width="1280" height="720" alt="Uma tarefa de classificar no computador">
+          <div class="texto"><h3>Escolha o seu setor</h3><p>Jurídico, Financeiro, Marketing, Logística ou Processos. Cada setor tem missões próprias em todos os níveis.</p></div>
+        </article>
+        <article class="cartao painel">
+          <img class="foto" src="img/11_escolha.png" width="1280" height="720" alt="Uma decisão no diálogo, com três opções">
+          <div class="texto"><h3>Decisões com consequência</h3><p>Reputação, conhecimento, salário e a relação com os colegas mudam com o que você decide.</p></div>
+        </article>
+        <article class="cartao painel">
+          <img class="foto" src="img/07_porto.png" width="1280" height="720" alt="O cais do porto, com o portêiner, contêineres e trabalhadores">
+          <div class="texto"><h3>Um mundo para visitar</h3><p>Porto, Receita Federal, centros logísticos, terminal de cargas aéreas, bar e uma casa para decorar.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="liftalerta">
+    <div class="conteiner destaque">
+      <div class="produto painel">
+        <img src="img/sensor_liftalerta.png" width="345" height="200" alt="O sensor de fadiga LiftAlerta Pro: um aparelho preto com uma câmera, uma luz verde e o desenho de uma empilhadeira">
+        <p class="legenda">LiftAlerta Pro, sensor de fadiga para empilhadeiras</p>
+      </div>
+      <div>
+        <h2 class="pixel">Segurança sem vigilância</h2>
+        <p class="sub" style="margin-bottom:0">Rodrigo Brandão, da LiftAlerta Sensores, quer exportar o sensor de fadiga que fabrica. Em 16 missões, todos os setores da ComerTech ajudam: mercado, preço, documentos, transporte da bateria de lítio, contrato e campanha.</p>
+        <ul>
+          <li>A pergunta central: como exportar o sensor sem que ele vire vigilância e sem ferir os direitos dos operadores.</li>
+          <li>Proteção de dados no trabalho na prática: LGPD, GDPR e o regulamento europeu de IA.</li>
+        </ul>
+        <div class="fala painel">
+          <img src="img/rodrigo.png" width="64" height="64" alt="Retrato de Rodrigo Brandão">
+          <p><b>Rodrigo Brandão</b>Se o operador achar que está sendo vigiado, ele cobre a câmera com fita no primeiro dia, e o sensor não salva ninguém.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="telas" class="faixa">
+    <div class="conteiner">
+      <h2 class="pixel">Telas</h2>
+      <p class="sub">Capturas da versão 1.6.</p>
+      <div class="galeria">
+        <figure><img class="tela" loading="lazy" src="img/01_boas_vindas.png" width="1280" height="720" alt="A tela de boas-vindas"><figcaption>A tela de boas-vindas, com os comandos do jeito que você joga.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/03_rodrigo_apresenta.png" width="1280" height="720" alt="Rodrigo Brandão apresentando o sensor na recepção"><figcaption>Rodrigo apresenta o LiftAlerta Pro na recepção.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/04_sensor_liftalerta.png" width="1280" height="720" alt="O cartão do produto LiftAlerta Pro"><figcaption>O cartão do produto.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/11_escolha.png" width="1280" height="720" alt="A decisão da missão Exportar sem Vigiar, com três opções"><figcaption>A decisão da missão da tese.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/09_celular.png" width="1280" height="720" alt="O celular do personagem aberto"><figcaption>O celular: banco, mensagens, mobília e rede social.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/07_porto.png" width="1280" height="720" alt="O cais do porto de Santos"><figcaption>O cais do porto, com o portêiner e o pessoal da estiva.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/08_receita.png" width="1280" height="720" alt="Os guichês da Receita Federal"><figcaption>Os guichês da Receita Federal.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/06_bar.png" width="1280" height="720" alt="O bar com a banda tocando"><figcaption>Depois do expediente, o bar com banda ao vivo.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/jogo_jotasul_docas.png" width="1280" height="720" alt="O pátio de caminhões da JotaSul"><figcaption>O centro de distribuição da JotaSul Logística.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/jogo_aerovias_patio.png" width="1280" height="720" alt="O pátio de cargas aéreas da AeroVias"><figcaption>O terminal de cargas aéreas da AeroVias.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/apartamento_decorado.png" width="1280" height="720" alt="Um apartamento decorado"><figcaption>A casa, decorada com o salário.</figcaption></figure>
+        <figure><img class="tela" loading="lazy" src="img/02_escritorio.png" width="1280" height="720" alt="O escritório da ComerTech"><figcaption>O escritório da ComerTech, onde tudo começa.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="baixar">
+    <div class="conteiner">
+      <h2 class="pixel">Baixar</h2>
+      <p class="sub">Grátis. Versão 1.6.</p>
+      <div class="downloads">
+        <div class="download painel">
+          <h3>Windows</h3>
+          <p>Windows 10 ou 11 de 64 bits. Não precisa instalar.</p>
+          <ol>
+            <li>Baixe o arquivo .zip (uns <span data-tam-win>210 MB</span>).</li>
+            <li>Extraia tudo para uma pasta.</li>
+            <li>Abra <b>Comex.exe</b>. Se o Windows avisar que o app é desconhecido, clique em “Mais informações” e “Executar assim mesmo”.</li>
+          </ol>
+          <a class="botao principal" href="https://github.com/gurudoscodigin/comex-rumo-ao-topo-site/releases/latest/download/Comex_Rumo_ao_Topo_Windows.zip">Baixar para Windows</a>
+        </div>
+        <div class="download painel">
+          <h3>Android</h3>
+          <p>Android 7 ou mais novo, de 64 bits. O jogo abre deitado.</p>
+          <ol>
+            <li>Baixe o arquivo .apk (uns <span data-tam-apk>300 MB</span>) no celular.</li>
+            <li>Toque nele e permita instalar apps desconhecidos para o navegador ou o app de arquivos.</li>
+            <li>Para atualizar, instale a versão nova por cima: o progresso continua.</li>
+          </ol>
+          <a class="botao secundario" href="https://github.com/gurudoscodigin/comex-rumo-ao-topo-site/releases/latest/download/Comex_Rumo_ao_Topo_Android.apk">Baixar para Android</a>
+        </div>
+        <div class="download painel">
+          <h3>iPhone</h3>
+          <p>A versão para iPhone ainda está em preparação.</p>
+          <ol><li>Enquanto isso, dá para jogar no PC ou no Android.</li></ol>
+          <div class="indisponivel">Em breve</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comandos" class="faixa">
+    <div class="conteiner">
+      <h2 class="pixel">Como jogar</h2>
+      <p class="sub">Os comandos também aparecem na tela de boas-vindas e nas configurações do jogo.</p>
+      <div class="rolagem painel">
+        <table class="tabela">
+          <thead><tr><th>Ação</th><th>Teclado e mouse</th><th>Controle</th><th>Toque (celular)</th></tr></thead>
+          <tbody>
+            <tr><td>Andar</td><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> ou setas, <kbd>Shift</kbd> corre</td><td>Analógico ou direcional, RB corre</td><td>Arraste no lado esquerdo da tela</td></tr>
+            <tr><td>Interagir e avançar</td><td><kbd>E</kbd>, <kbd>Espaço</kbd> ou <kbd>Enter</kbd></td><td>A</td><td>Botão amarelo “Usar”</td></tr>
+            <tr><td>Escolher</td><td><kbd>1</kbd> a <kbd>4</kbd> ou mouse</td><td>Direcional e A</td><td>Toque na opção</td></tr>
+            <tr><td>Diário</td><td><kbd>J</kbd></td><td>Select</td><td>Botão “Diário”</td></tr>
+            <tr><td>Pausa e configurações</td><td><kbd>Esc</kbd></td><td>Start</td><td>Botão “Pausa” ou voltar do Android</td></tr>
+            <tr><td>Pular a espera</td><td><kbd>T</kbd></td><td>Y</td><td>Botão “Pular”</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota" style="margin-top:14px">No PC o jogo passa para o controle quando você aperta um botão dele. No celular, conecte o controle por Bluetooth ou USB e escolha Configurações › Jogar com › Controle.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="conteiner creditos">
+    <div>
+      <h3>Comex: Rumo ao Topo</h3>
+      <p>Trabalho de Conclusão de Curso. Jogo gratuito.</p>
+    </div>
+    <div>
+      <h3>Feito com</h3>
+      <p><a href="https://godotengine.org">Godot Engine</a> (licença MIT).</p>
+    </div>
+    <div>
+      <h3>Vozes</h3>
+      <p>Parte das falas gravada com ElevenLabs. As demais geradas com <a href="https://github.com/rhasspy/piper">Piper</a>: vozes Cadu, Faber e Jeff (CC0) e Edresson, treinada com o <a href="https://github.com/Edresson/TTS-Portuguese-Corpus">TTS-Portuguese-Corpus</a> de Edresson Casanova (CC BY 4.0). Vozes femininas: Microsoft Maria.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
