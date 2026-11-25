@@ -3,7 +3,7 @@
 Página de download do jogo **Comex: Rumo ao Topo**, um RPG de escritório sobre Comércio Exterior
 (de estagiário a diretor numa despachante aduaneira), feito como Trabalho de Conclusão de Curso.
 
-- **Página:** https://gurudoscodigin.github.io/comex-rumo-ao-topo-site/
+- **Página:** https://comex-rumo-ao-topo.vercel.app
 - **Downloads:** veja a última versão em [Releases](https://github.com/gurudoscodigin/comex-rumo-ao-topo-site/releases/latest)
   (Windows `.zip` e Android `.apk`).
 
